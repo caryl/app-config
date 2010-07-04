@@ -17,9 +17,20 @@ class SimpleConfigTest < Test::Unit::TestCase
     assert_equal Conf.float, 234.0
     assert_equal Conf.bool, true
     assert_equal Conf.string, 'abc'
-    assert_equal Conf.int, 123
     assert_equal Conf.date, Date.new(2010,1,2)
     assert_equal Conf.array, ['a','b','c']
   end
+  
+  def test_defaults
+    AppConfig.update_all("value = ''")
+    Conf.reload
+    assert_equal Conf.int, 100
+    assert_equal Conf.float, 200.0
+    assert_equal Conf.bool, false
+    assert_equal Conf.string, 'aaa'
+    assert_equal Conf.date, Date.new(2010,1,1)
+    assert_equal Conf.array, ['1','2','3']
+  end
+  
   
 end

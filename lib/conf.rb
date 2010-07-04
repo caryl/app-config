@@ -4,13 +4,14 @@ class Conf
   def self.method_missing(conf_key)
     record = $configuration.detect{|c|c.key == conf_key.to_s}
     return nil if record.blank?
-    self.type_cast(record.value, record.data_type.to_sym)
+    self.type_cast(record)
   end
   
-  def self.type_cast(value, type)
-    return nil if value.nil? || value == 'nil'
+  def self.type_cast(record)
+    return nil if record.value == 'nil'
+    value = record.value.present? ? record.value : record.default_value
     adapter = ActiveRecord::ConnectionAdapters::Column
-    case type
+    case record.data_type.to_sym
       when :string    then value
       when :integer   then value.to_i rescue value ? 1 : 0
       when :float     then value.to_f
