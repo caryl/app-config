@@ -1,0 +1,27 @@
+<h1>站点配置</h1>
+
+<table>
+  <tr>
+    <th>类型</th>
+    <th>位置</th>
+    <th>键</th>
+    <th>说明</th>
+    <th>值</th>
+    <th>默认值</th>
+  </tr>
+
+  <% for app_config in @app_configs %>
+  <tr>
+    <td><%= h app_config.kind %></td>
+    <td><%= h app_config.position %></td>
+    <td><%= h app_config.key %></td>
+    <td><%= h app_config.name %></td>
+    <td><%= h app_config.value %></td>
+    <td><%= h app_config.default_value %></td>
+    <td><%= link_to '修改', edit_app_config_path(app_config) %></td>
+    <td><%= link_to '删除', app_config, :confirm => '确定要删除吗?', :method => :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
+<p><%= link_to '新建配置项', new_app_config_path %></p>

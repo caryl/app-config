@@ -1,0 +1,17 @@
+<%= form.error_messages %>
+<dl>
+    <dt><%= form.label :group, '类型' %></dt>
+    <dd><%= form.select :group,Configuration.options_for_kind %></dd>
+    <dt><%= form.label :position, '位置' %></dt>
+    <dd><%= form.text_field :position %></dd>
+    <dt><%= form.label :key, '标示' %></dt>
+    <dd><%= form.text_field :key %></dd>
+    <dt><%= form.label :name, '说明' %></dt>
+    <dd><%= h @app_config.name %></dd>
+    <dt><%= form.label :value, '值' %></dt>
+    <dd><%= form.text_field :value%></dd>
+    <dt><%= form.label :tips %></dt>
+    <dd><%= simple_format h @app_config.tips %></dd>
+    <dt><%= form.label :default_value, '默认值' %></dt>
+    <dd><%= form.text_field :default_value %></dd>
+</dl>

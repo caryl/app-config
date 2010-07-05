@@ -1,0 +1,8 @@
+<h1>新建配置项</h1>
+
+<% form_for(@app_config) do |form| %>
+  <%= render :partial => 'form', :locals => {:form => form} %>
+  <p><%= form.submit '创建' %></p>
+<% end %>
+
+<p><%= link_to '返回列表', app_configs_path %></p>
